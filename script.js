@@ -1,4 +1,4 @@
-const TOTAL_PARTICIPANTS = 40; // ajuste conforme necessário
+const TOTAL_PARTICIPANTS = 36; // ajuste conforme necessário
 
 let queue = [];
 let timerInterval;
