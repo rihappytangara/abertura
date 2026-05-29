@@ -1,95 +1,32 @@
-let queue = [];
-let timerInterval;
 
-async function loadParticipants() {
-    const response = await fetch("./participants.json");
-    const participants = await response.json();
-
-    queue = participants.map((participant, index) => ({
-        id: index + 1,
-        name: participant.name,
-        image: `assets/${participant.image}`
-    }));
-
-    render();
+let queue=[];
+async function loadParticipants(){
+const response=await fetch('./assets/participants.json');
+const participants=await response.json();
+queue=participants.map((p,i)=>({id:i+1,name:p.name,image:`assets/${p.image}`}));
+render();
 }
-
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-
-        [array[i], array[j]] = [array[j], array[i]];
-    }
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+function render(){
+if(!queue.length)return;
+document.getElementById('featured').innerHTML=`<div class="featured-card"><img src="${queue[0].image}"><div class="name">${queue[0].name}</div></div>`;
+const q=document.getElementById('queue');q.innerHTML='';
+queue.slice(1,10).forEach((p,i)=>{
+const d=document.createElement('div');
+d.className='small-card';
+d.innerHTML=`<img src="${p.image}"><div class="small-name">${i+2}º ${p.name}</div>`;
+q.appendChild(d);
+});
+const r=document.getElementById('ranking');
+r.innerHTML='<div class="ranking-title">ORDEM COMPLETA</div>';
+queue.forEach((p,i)=>{
+const d=document.createElement('div');
+d.className='rank-row'+(i===0?' active':'');
+d.textContent=(i===0?'▶ ':'')+(i+1)+'º '+p.name;
+r.appendChild(d);
+});
 }
-
-function render() {
-    const featured = document.getElementById("featured");
-    const queueEl = document.getElementById("queue");
-
-    if (!queue.length) return;
-
-    featured.innerHTML = `
-        <div class="featured-card">
-            <img src="${queue[0].image}" alt="${queue[0].name}">
-            <div class="rank">1º Lugar Atual</div>
-            <div class="name">${queue[0].name}</div>
-        </div>
-    `;
-
-    queueEl.innerHTML = "";
-
-    queue.slice(1,13).forEach((participant, index) => {
-        const div = document.createElement("div");
-
-        div.className = "small-card";
-
-        div.innerHTML = `
-            <img src="${participant.image}" alt="${participant.name}">
-            <div class="rank">${index + 2}º</div>
-            <div class="small-name">${participant.name}</div>
-        `;
-
-        queueEl.appendChild(div);
-    });
-}
-
-document.getElementById("drawBtn").addEventListener("click", () => {
-    shuffle(queue);
-    render();
-});
-
-document.getElementById("nextBtn").addEventListener("click", () => {
-    if (queue.length <= 1) return;
-
-    const current = queue.shift();
-    queue.push(current);
-
-    render();
-});
-
-document.getElementById("timerBtn").addEventListener("click", () => {
-    clearInterval(timerInterval);
-
-    let remaining = 60;
-
-    function updateTimer() {
-        const minutes = String(Math.floor(remaining / 60)).padStart(2, "0");
-        const seconds = String(remaining % 60).padStart(2, "0");
-
-        document.getElementById("timer").textContent =
-            `${minutes}:${seconds}`;
-
-        if (remaining <= 0) {
-            clearInterval(timerInterval);
-            return;
-        }
-
-        remaining--;
-    }
-
-    updateTimer();
-
-    timerInterval = setInterval(updateTimer, 1000);
-});
-
+document.getElementById('drawBtn').onclick=()=>{shuffle(queue);render();};
+document.getElementById('nextBtn').onclick=()=>{queue.push(queue.shift());render();};
+const t=document.getElementById('timerBtn'); if(t) t.style.display='none';
 loadParticipants();
