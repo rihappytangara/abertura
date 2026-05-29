@@ -1,1 +1,0 @@
-Coloque todas as imagens na pasta assets e mantenha os nomes exatamente iguais aos definidos em participants.json
