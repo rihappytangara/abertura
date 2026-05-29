@@ -38,7 +38,7 @@ function render() {
 
     queueEl.innerHTML = "";
 
-    queue.slice(1).forEach((participant, index) => {
+    queue.slice(1,13).forEach((participant, index) => {
         const div = document.createElement("div");
 
         div.className = "small-card";
