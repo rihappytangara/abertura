@@ -30,3 +30,12 @@ document.getElementById('drawBtn').onclick=()=>{shuffle(queue);render();};
 document.getElementById('nextBtn').onclick=()=>{queue.push(queue.shift());render();};
 const t=document.getElementById('timerBtn'); if(t) t.style.display='none';
 loadParticipants();
+document.getElementById("fullscreenBtn").onclick = () => {
+
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+
+};
