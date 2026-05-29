@@ -1,15 +1,10 @@
-body{margin:0;background:#050505;color:#fff;font-family:Arial,sans-serif;overflow:hidden}
-header{background:#111;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
-.controls{display:flex;gap:10px}button{padding:10px 16px;font-weight:bold}
-main{display:grid;grid-template-columns:45% 35% 20%;gap:15px;padding:15px;height:calc(100vh - 80px);box-sizing:border-box}
-#featured{display:flex;justify-content:center;align-items:center}
-.featured-card img{max-width:100%;max-height:82vh;border-radius:18px;box-shadow:0 0 30px rgba(255,122,0,.7)}
-.name{text-align:center;font-size:2rem;font-weight:bold;margin-top:10px}
-#queue{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-content:start}
-.small-card img{width:100%;border-radius:10px}
-.small-card:first-child img{outline:4px solid #ff7a00}
-.small-name{text-align:center;font-size:.8rem}
-#ranking{background:#111;border-radius:12px;padding:12px;overflow-y:auto}
-.ranking-title{text-align:center;font-weight:bold;margin-bottom:10px}
-.rank-row{padding:6px;border-radius:6px;margin-bottom:2px}
-.rank-row.active{background:#ff7a00;font-weight:bold}
+
+/* Substitua a regra #ranking por esta */
+
+#ranking{
+    background:#111;
+    border-radius:12px;
+    padding:12px;
+    overflow-y:auto;
+    max-height:calc(100vh - 120px);
+}
