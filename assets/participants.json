@@ -143,6 +143,14 @@
     "name": "RAQUEL",
     "image": "RAQUEL.png"
   },
+    {
+    "name": "RENAN",
+    "image": "RENAN.png"
+  },
+  {
+    "name": "ROSIMEIRE",
+    "image": "ROSIMEIRE.png"
+  },
   {
     "name": "SAMIRA",
     "image": "SAMIRA.png"
@@ -158,6 +166,10 @@
   {
     "name": "VALDO",
     "image": "VALDO.png"
+  },
+   {
+    "name": "WERLLYSON",
+    "image": "WERLLYSON.png"
   },
   {
     "name": "YARA",
